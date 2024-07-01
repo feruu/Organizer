@@ -36,12 +36,14 @@ struct AddToDoView: View {
                     .pickerStyle(SegmentedPickerStyle())
 //MARK: - SAVE BUTTON
                     Button(action: { if self.name != "" {
+                       
                         let newTask = TaskToDo(context: managedObjectContext)
                         newTask.name = self.name
                         newTask.priority = self.priority
                         do {
                             try self.managedObjectContext.save()
                             print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
+                            name = ""
                         } //: DO
                         catch {
                             print(error)
@@ -52,6 +54,7 @@ struct AddToDoView: View {
                         errorMessage = "Make sure to enter something for /nthe new item."
                     } //: ELSE
                         self.presentationMode.wrappedValue.dismiss()
+                       
                     }){
                         Text("Save")
                     } //: SAVE BUTTON
@@ -70,7 +73,7 @@ struct AddToDoView: View {
             } //: TOOLBAR
         } //NAVIGATION TITLE
         .alert(isPresented: $errorShowing){
-            Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton:
+            return Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton:
                     .default(Text("OK")))
         } //ALERT
     } // : NAVIGATION
