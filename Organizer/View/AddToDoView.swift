@@ -36,24 +36,26 @@ struct AddToDoView: View {
                     .pickerStyle(SegmentedPickerStyle())
 //MARK: - SAVE BUTTON
                     Button(action: { if self.name != "" {
-                       
                         let newTask = TaskToDo(context: managedObjectContext)
                         newTask.name = self.name
                         newTask.priority = self.priority
                         do {
-                            try self.managedObjectContext.save()
+                            try managedObjectContext.save()
                             print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
-                            name = ""
+                           // name = ""
                         } //: DO
                         catch {
                             print(error)
                         } //: CATCH
-                    } else{
+                    }
+                        else {
                         errorShowing = true
                         errorTitle = "Invalid Name"
                         errorMessage = "Make sure to enter something for /nthe new item."
                     } //: ELSE
+                            
                         self.presentationMode.wrappedValue.dismiss()
+                            
                        
                     }){
                         Text("Save")

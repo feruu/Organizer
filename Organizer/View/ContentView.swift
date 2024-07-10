@@ -23,6 +23,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                //MARK: - NO TASK ITEMS
+                
+                if tasks.count == 0 {
+                    EmptyListView()
+                    
+                }
+                
                 List {
                     ForEach(self.tasks, id: \.self) { todo in
                         HStack {
@@ -51,14 +58,11 @@ struct ContentView: View {
                         }
                     }
                 }
-                //MARK: - NO TASK ITEMS
-                if tasks.count == 0 {
-                    EmptyView()
-                }
-                
+               
         } //: ZSTACK
     } //: NAVIGATION
 }
+    
     private func deleteTask(at offsets: IndexSet){
         for index in offsets {
             let task = tasks[index]
@@ -75,10 +79,14 @@ struct ContentView: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+struct ContentView_Previews: PreviewProvider {
+    static var dataController = PersistenceController.preview
     
-    ContentView().environment( \.managedObjectContext, PersistenceController.preview.container.viewContext)
-    
+    static var previews: some View {
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(dataController)
+    }
 }
-   //
+  
 
