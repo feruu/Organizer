@@ -24,9 +24,14 @@ struct AddToDoView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Form{
+                VStack(alignment: .leading, spacing: 30){
                     //MARK: - ToDoName
                     TextField("Organizer", text: $name)
+                        .padding()
+                        .background(Color(UIColor.tertiarySystemFill))
+                        .cornerRadius(9)
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                       // .clipShape(OffsetShape(shape: Circle(), offset: 9))
 //MARK: - ToDoPriority
                     Picker("Priority", selection: $priority){
                         ForEach(priorities, id: \.self){
@@ -41,8 +46,8 @@ struct AddToDoView: View {
                         newTask.priority = self.priority
                         do {
                             try managedObjectContext.save()
-                            print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
-                           // name = ""
+                           
+                           
                         } //: DO
                         catch {
                             print(error)
@@ -58,9 +63,19 @@ struct AddToDoView: View {
                             
                        
                     }){
+                        //MARK: - SAVE BUTTON
                         Text("Save")
+                            .font(.system(size: 24, weight: .bold, design: .default))
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(9)
+                            .foregroundColor(Color.white)
+                            
                     } //: SAVE BUTTON
-                } //: FORM
+                } //: VStack
+                .padding(.horizontal)
+                .padding(.vertical, 30)
                 Spacer()
             }
             .navigationBarTitle("New Task", displayMode: .inline)
