@@ -24,9 +24,14 @@ struct AddToDoView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Form{
+                VStack(alignment: .leading,spacing: 20 ){
                     //MARK: - ToDoName
                     TextField("Organizer", text: $name)
+                        .padding()
+                        .background(Color(UIColor.tertiarySystemFill))
+                        .cornerRadius(9)
+                        .font(.system(size: 24, weight: .bold, design: .default))
+                    
 //MARK: - ToDoPriority
                     Picker("Priority", selection: $priority){
                         ForEach(priorities, id: \.self){
@@ -36,29 +41,39 @@ struct AddToDoView: View {
                     .pickerStyle(SegmentedPickerStyle())
 //MARK: - SAVE BUTTON
                     Button(action: { if self.name != "" {
-                       
                         let newTask = TaskToDo(context: managedObjectContext)
                         newTask.name = self.name
                         newTask.priority = self.priority
                         do {
-                            try self.managedObjectContext.save()
-                            print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
-                            name = ""
+                            try managedObjectContext.save()
+                            //print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
+                           
                         } //: DO
                         catch {
                             print(error)
                         } //: CATCH
-                    } else{
+                    }
+                        else {
                         errorShowing = true
                         errorTitle = "Invalid Name"
                         errorMessage = "Make sure to enter something for /nthe new item."
                     } //: ELSE
+                            
                         self.presentationMode.wrappedValue.dismiss()
+                            
                        
                     }){
                         Text("Save")
+                            .font(.system(size: 24, weight: .bold, design: .default))
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(9)
+                            .foregroundStyle(Color.white)
                     } //: SAVE BUTTON
                 } //: FORM
+                .padding(.horizontal)
+                .padding(.vertical, 30)
                 Spacer()
             }
             .navigationBarTitle("New Task", displayMode: .inline)
@@ -73,7 +88,7 @@ struct AddToDoView: View {
             } //: TOOLBAR
         } //NAVIGATION TITLE
         .alert(isPresented: $errorShowing){
-            return Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton:
+            Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton:
                     .default(Text("OK")))
         } //ALERT
     } // : NAVIGATION
