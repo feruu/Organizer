@@ -8,13 +8,17 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
     // MARK: - PROPERTIES
     @Environment(\.managedObjectContext) var managedObjectContext
+    
     // MARK: - FetchRequest
     @FetchRequest(
         entity: TaskToDo.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \TaskToDo.name, ascending: true)])
         var tasks: FetchedResults<TaskToDo>
+    
+    @EnvironmentObject var iconSettings: IconNames
     @State private var showingSettingView: Bool = false
     @State private var showingAddNewTaskView: Bool = false
     @State private var animatingButton: Bool = false
@@ -24,7 +28,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //MARK: - NO TASK ITEMS
+                
+    //MARK: - NO TASK ITEMS
                 List {
                     ForEach(self.tasks, id: \.self) { todo in
                         HStack {
@@ -55,7 +60,7 @@ struct ContentView: View {
                     }
                     
                 } // Navigation Toolbar Items
-                //MARK: - NO TODO ITEMS, Empty list
+        //MARK: - NO TODO ITEMS, Empty list
                 if tasks.count == 0 {
                     EmptyListView()
                 }
@@ -77,6 +82,7 @@ struct ContentView: View {
                             .scaleEffect(self.animatingButton ? 1 : 0)
                             .frame(width: 88, height: 88, alignment: .center)
                     } //: GROUP
+                    
                     .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                     Button(action: { self.showingAddNewTaskView.toggle()
                     }) { Image(systemName: "plus.circle.fill")
@@ -95,7 +101,7 @@ struct ContentView: View {
                 )
     } //: NAVIGATION
 }
-    
+    //MARK: - DELETE FUNCTION
     private func deleteTask(at offsets: IndexSet){
         for index in offsets {
             let task = tasks[index]

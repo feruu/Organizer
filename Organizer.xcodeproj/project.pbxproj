@@ -26,6 +26,7 @@
 		5A2E8AB12C3FBDF9003828A6 /* Green Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2E8AA82C3FBDF9003828A6 /* Green Dark.png */; };
 		5A2E8AB22C3FBDF9003828A6 /* Pink Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2E8AA92C3FBDF9003828A6 /* Pink Dark.png */; };
 		5A2E8AB32C3FBDF9003828A6 /* Green Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2E8AAA2C3FBDF9003828A6 /* Green Light.png */; };
+		5AD288F92C3FEA5D0053E5C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD288F82C3FEA5C0053E5C5 /* SceneDelegate.swift */; };
 		5AE48D492C32BB1500DD923E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AE48D482C32BB1500DD923E /* LaunchScreen.storyboard */; };
 		5AE48D4B2C32C04A00DD923E /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE48D4A2C32C04A00DD923E /* EmptyListView.swift */; };
 		5AFB6A152C303BC00016FCC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFB6A142C303BC00016FCC6 /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 		5A2E8AA82C3FBDF9003828A6 /* Green Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Dark.png"; sourceTree = "<group>"; };
 		5A2E8AA92C3FBDF9003828A6 /* Pink Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Dark.png"; sourceTree = "<group>"; };
 		5A2E8AAA2C3FBDF9003828A6 /* Green Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Light.png"; sourceTree = "<group>"; };
+		5AD288F82C3FEA5C0053E5C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5AE48D482C32BB1500DD923E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5AE48D4A2C32C04A00DD923E /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		5AFB6A142C303BC00016FCC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,15 +89,16 @@
 		5A0363762C30187D00687A74 /* Organizer */ = {
 			isa = PBXGroup;
 			children = (
+				5AFB6A142C303BC00016FCC6 /* AppDelegate.swift */,
+				5AD288F82C3FEA5C0053E5C5 /* SceneDelegate.swift */,
+				5A0363802C30187F00687A74 /* Persistence.swift */,
 				5A2E8AA12C3FBD80003828A6 /* Icons */,
 				5A03638A2C301A5A00687A74 /* View */,
 				5A0363772C30187D00687A74 /* OrganizerApp.swift */,
 				5A03637B2C30187F00687A74 /* Assets.xcassets */,
 				5AE48D482C32BB1500DD923E /* LaunchScreen.storyboard */,
-				5A0363802C30187F00687A74 /* Persistence.swift */,
 				5A0363822C30187F00687A74 /* Organizer.xcdatamodeld */,
 				5A03637D2C30187F00687A74 /* Preview Content */,
-				5AFB6A142C303BC00016FCC6 /* AppDelegate.swift */,
 			);
 			path = Organizer;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				5A0E547F2C3EDD5B007B1AED /* FormRowStaticView.swift in Sources */,
 				5A0E54812C3EE266007B1AED /* FormRowLinkView.swift in Sources */,
 				5A03638C2C301A7400687A74 /* AddToDoView.swift in Sources */,
+				5AD288F92C3FEA5D0053E5C5 /* SceneDelegate.swift in Sources */,
 				5A03637A2C30187D00687A74 /* ContentView.swift in Sources */,
 				5A0363782C30187D00687A74 /* OrganizerApp.swift in Sources */,
 				5A0363842C30187F00687A74 /* Organizer.xcdatamodeld in Sources */,
