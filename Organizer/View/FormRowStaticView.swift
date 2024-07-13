@@ -32,7 +32,7 @@ struct FormRowStaticView: View {
 //MARK: - PREVIEW
 #Preview {
     FormRowStaticView(icon: "gear", firstText: "Application", secondText: "Organizer")
-        
+    
         .previewLayout(.fixed(width: 375, height: 60))
         .padding()
 }

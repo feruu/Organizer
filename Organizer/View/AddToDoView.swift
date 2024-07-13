@@ -19,6 +19,10 @@ struct AddToDoView: View {
     @State private var errorShowing: Bool = false
     @State private var errorTitle: String = ""
     @State private var errorMessage: String = ""
+    //: THEME
+    let themes : [Theme] = themeData
+    @ObservedObject var theme = ThemeSettings()
+    
     
     //MARK: - BODY
     var body: some View {
@@ -32,14 +36,14 @@ struct AddToDoView: View {
                         .cornerRadius(9)
                         .font(.system(size: 24, weight: .bold, design: .default))
                     
-//MARK: - ToDoPriority
+                    //MARK: - ToDoPriority
                     Picker("Priority", selection: $priority){
                         ForEach(priorities, id: \.self){
                             Text($0)
                         }//: LOOP
                     }//:PICKER
                     .pickerStyle(SegmentedPickerStyle())
-//MARK: - SAVE BUTTON
+                    //MARK: - SAVE BUTTON
                     Button(action: { if self.name != "" {
                         let newTask = TaskToDo(context: managedObjectContext)
                         newTask.name = self.name
@@ -47,27 +51,27 @@ struct AddToDoView: View {
                         do {
                             try managedObjectContext.save()
                             //print("New task: \(newTask.name ?? ""), Priority: \(newTask.priority ?? "")")
-                           
+                            
                         } //: DO
                         catch {
                             print(error)
                         } //: CATCH
                     }
                         else {
-                        errorShowing = true
-                        errorTitle = "Invalid Name"
-                        errorMessage = "Make sure to enter something for /nthe new item."
-                    } //: ELSE
-                            
+                            errorShowing = true
+                            errorTitle = "Invalid Name"
+                            errorMessage = "Make sure to enter something for /nthe new item."
+                        } //: ELSE
+                        
                         self.presentationMode.wrappedValue.dismiss()
-                            
-                       
+                        
+                        
                     }){
                         Text("Save")
                             .font(.system(size: 24, weight: .bold, design: .default))
                             .padding()
                             .frame(minWidth: 0, maxWidth: .infinity)
-                            .background(Color.blue)
+                            .background(themes[self.theme.themeSettings].themeColor)
                             .cornerRadius(9)
                             .foregroundStyle(Color.white)
                     } //: SAVE BUTTON
@@ -90,8 +94,13 @@ struct AddToDoView: View {
         .alert(isPresented: $errorShowing){
             Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton:
                     .default(Text("OK")))
-        } //ALERT
-    } // : NAVIGATION
+        } .accentColor(themes[self.theme.themeSettings].themeColor)
+        .navigationViewStyle(StackNavigationViewStyle())
+        //ALERT
+    }
+    // : NAVIGATION
+        
+    
 }
 
 //MARK: - PREVIEW
