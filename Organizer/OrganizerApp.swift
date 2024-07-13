@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct OrganizerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var iconNames = IconNames()
 
     let persistenceController = PersistenceController.shared
 
@@ -17,6 +18,7 @@ struct OrganizerApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(iconNames)
         }
     }
 }
